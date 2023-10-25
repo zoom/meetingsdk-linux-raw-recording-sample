@@ -553,6 +553,7 @@ void LeaveMeeting()
 //callback when authentication is compeleted
 void OnAuthenticationComplete()
 {
+	std::cout << "OnAuthenticationComplete" << std::endl;
 	JoinMeeting();
 }
 
@@ -584,7 +585,7 @@ void AuthMeetingSDK()
 		std::cerr << "AuthSDK:error " << std::endl;
 	}
 	else{
-		std::cerr << "AuthSDK:success " << std::endl;
+		std::cerr << "AuthSDK:send success, awaiting callback " << std::endl;
 	}
 }
 
