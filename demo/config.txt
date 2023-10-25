@@ -1,6 +1,0 @@
-meeting_number:"1234567890"
-token:"xxxxxxxx.yyyyyyyyyyyyyyyyyy.zzzzzzzzzzzzzzzzz"
-meeting_password:"123456"
-recording_token:""
-GetVideoRawData:"true"
-GetAudioRawData:"true"
