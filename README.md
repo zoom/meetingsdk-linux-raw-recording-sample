@@ -41,12 +41,12 @@ Please be aware that all hard-coded variables and constants shown in the documen
 
 ```
 
-"meeting_number": "1234567890"
-"token": "xxxxxxxx.yyyyyyyyyyyyyyyyyy.zzzzzzzzzzzzzzzzz"
-"meeting_password": "123456"
-"recording_token": ""
-"GetVideoRawData": "true"
-"GetAudioRawData": "true"
+meeting_number: "1234567890"
+token: "xxxxxxxx.yyyyyyyyyyyyyyyyyy.zzzzzzzzzzzzzzzzz"
+meeting_password: "123456"
+recording_token: ""
+GetVideoRawData: "true"
+GetAudioRawData: "true"
 
 ```
 2. You need to fill in `withoutloginParam.userName = "";`  in `meeting_sdk_demo.cpp`. `meeting_sdk_demo.cpp` is the starting point of the demo app.
