@@ -81,8 +81,6 @@ Similarly for libraries
 target_link_libraries(meetingSDKDemo gcc_s gcc)
 target_link_libraries(meetingSDKDemo meetingsdk)
 target_link_libraries(meetingSDKDemo glib-2.0)
-target_link_libraries(meetingSDKDemo ${GTKMM_LIBRARIES})
-target_link_libraries(meetingSDKDemo curl)
 target_link_libraries(meetingSDKDemo pthread)
 ```
 

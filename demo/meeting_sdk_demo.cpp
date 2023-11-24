@@ -7,6 +7,7 @@
 #include <sstream>
 #include <thread>
 #include <sys/syscall.h>
+#include <sys/syscall.h>
 #include <fstream>
 #include <iosfwd>
 #include <iostream>
@@ -53,6 +54,7 @@ USING_ZOOM_SDK_NAMESPACE
 
 
 GMainLoop* loop;
+
 
 //These are needed to readsettingsfromTEXT named config.txt
 std::string meeting_number, token, meeting_password, recording_token;
@@ -577,16 +579,16 @@ void AuthMeetingSDK()
 		param.jwt_token = token.c_str();
 		std::cerr << "AuthSDK:token extracted from config file " <<param.jwt_token  << std::endl;
 	}
+	m_pAuthService->SDKAuth(param);
+	////attempt to authenticate
+	//ZOOM_SDK_NAMESPACE::SDKError sdkErrorResult = m_pAuthService->SDKAuth(param);
 
-	//attempt to authenticate
-	ZOOM_SDK_NAMESPACE::SDKError sdkErrorResult = m_pAuthService->SDKAuth(param);
-
-	if (ZOOM_SDK_NAMESPACE::SDKERR_SUCCESS != sdkErrorResult){
-		std::cerr << "AuthSDK:error " << std::endl;
-	}
-	else{
-		std::cerr << "AuthSDK:send success, awaiting callback " << std::endl;
-	}
+	//if (ZOOM_SDK_NAMESPACE::SDKERR_SUCCESS != sdkErrorResult){
+	//	std::cerr << "AuthSDK:error " << std::endl;
+	//}
+	//else{
+	//	std::cerr << "AuthSDK:send success, awaiting callback " << std::endl;
+	//}
 }
 
 void InitMeetingSDK()
@@ -706,9 +708,11 @@ int main(int argc, char* argv[])
 	AuthMeetingSDK();
 	initAppSettings();
 
+
+
 	loop = g_main_loop_new(NULL, FALSE);
 	// add source to default context
-	g_timeout_add(100, timeout_callback, loop);
+	g_timeout_add(1000, timeout_callback, loop);
 	g_main_loop_run(loop);
 	return 0;
 }
