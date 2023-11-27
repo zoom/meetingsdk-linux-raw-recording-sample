@@ -80,5 +80,9 @@ public:
 	/// \brief Callback event that the user avatar path is updated in the meeting.
 	/// \param userID Specify the user ID whose avatar updated. 
 	virtual void onInMeetingUserAvatarPathUpdated(unsigned int userID);
+
+	/// \brief Callback event that participant profile status change.
+	/// \param bHide true means hide participant profile picture, false means show participant profile picture. 
+	virtual void onParticipantProfilePictureStatusChange(bool bHidden);
 };
 

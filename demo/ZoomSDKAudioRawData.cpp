@@ -10,6 +10,7 @@ void ZoomSDKAudioRawData::onOneWayAudioRawDataReceived(AudioRawData* audioRawDat
 	//std::cout << "Received onOneWayAudioRawDataReceived" << std::endl;
 	//add your code here
 }
+
 void ZoomSDKAudioRawData::onMixedAudioRawDataReceived(AudioRawData* audioRawData)
 {
 	std::cout << "Received onMixedAudioRawDataReceived" << std::endl;
@@ -32,8 +33,7 @@ void ZoomSDKAudioRawData::onMixedAudioRawDataReceived(AudioRawData* audioRawData
 		// Close the wave file
 		pcmFile.close();
 		pcmFile.flush();
-	
-
-
-
+}
+void ZoomSDKAudioRawData::onShareAudioRawDataReceived(AudioRawData* data_)
+{
 }

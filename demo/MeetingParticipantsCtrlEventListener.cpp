@@ -78,3 +78,5 @@ void MeetingParticipantsCtrlEventListener::onRequestLocalRecordingPrivilegeChang
 /// \param userID Specify the user ID whose avatar updated. 
 void MeetingParticipantsCtrlEventListener::onInMeetingUserAvatarPathUpdated(unsigned int userID) {}
 
+void MeetingParticipantsCtrlEventListener::onParticipantProfilePictureStatusChange(bool bHidden) {}
+
