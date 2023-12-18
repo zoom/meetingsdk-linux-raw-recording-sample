@@ -34,7 +34,7 @@ The is a sample app for Zoom Meeting SDK Linux. It demonstrates access to raw au
 1. The sdk auth token, password, meeting number etc.. needs to be written in the config.txt file.
 The [recording_token](https://developers.zoom.us/docs/meeting-sdk/apis/#operation/meetingLocalRecordingJoinToken) when entered, will allow you to recording with additional actions from host.
 
-`GetVideoRawData` and `GetAudioRawData` are boolean control variables. You can search for them in the sample code to understand the flow.
+`GetVideoRawData`, `GetAudioRawData`, `SendVideoRawData`, `SendAudioRawData` are boolean control variables. You can search for them in the sample code to understand the flow.
 
 ### Disclaimer
 Please be aware that all hard-coded variables and constants shown in the documentation and in the demo, such as Zoom Token, Zoom Access, Token, etc., are ONLY FOR DEMO AND TESTING PURPOSES. We STRONGLY DISCOURAGE the way of HARDCODING any Zoom Credentials (username, password, API Keys & secrets, SDK keys & secrets, etc.) or any Personal Identifiable Information (PII) inside your application. WE DON’T MAKE ANY COMMITMENTS ABOUT ANY LOSS CAUSED BY HARD-CODING CREDENTIALS OR SENSITIVE INFORMATION INSIDE YOUR APP WHEN DEVELOPING WITH OUR SDK.
@@ -47,6 +47,8 @@ meeting_password: "123456"
 recording_token: ""
 GetVideoRawData: "true"
 GetAudioRawData: "true"
+SendVideoRawData: "false"
+SendAudioRawData: "false"
 
 ```
 2. You need to fill in `withoutloginParam.userName = "";`  in `meeting_sdk_demo.cpp`. `meeting_sdk_demo.cpp` is the starting point of the demo app.
@@ -55,7 +57,7 @@ GetAudioRawData: "true"
     1. either host/co-host/local-recording rights or 
     2. meeting recording token
 5. You will need a file named `~\.config.us\zoomus.conf` before you can access raw audio in an environment without soundcard, such as docker and WSL environment. The sample zoomus.conf file is generated in the `setup-pulseaudio.sh` files
-
+6. For Sending Raw Audio and Raw Video, there are 2 methods (`turnOnSendVideoAndAudio` and `turnOnSendVideoAndAudio`) which you will need to call 
 ## CMakeLists.txt
 If you have additional cpp and/or .h files, you might need to be included in this CMakeLists.txt
 
@@ -226,16 +228,16 @@ Currently this is tested on
 
 
 #### Centos 8
-docker build -t msdk-5.16.5-on-centos8-compact -f Dockerfile-Centos8/Dockerfile .
-docker run -it --rm msdk-5.16.5-on-centos8-compact
+docker build -t msdk-5.16.10-on-centos8-compact -f Dockerfile-Centos8/Dockerfile .
+docker run -it --rm msdk-5.16.10-on-centos8-compact
 
 #### Centos 9
-docker build -t msdk-5.16.5-on-centos9-compact -f Dockerfile-Centos9/Dockerfile .
-docker run -it --rm msdk-5.16.5-on-centos9-compact
+docker build -t msdk-5.16.10-on-centos9-compact -f Dockerfile-Centos9/Dockerfile .
+docker run -it --rm msdk-5.16.10-on-centos9-compact
 
 #### Ubuntu 22
-docker build -t msdk-5.16.5-on-ubuntu-compact -f Dockerfile-Ubuntu/Dockerfile .
-docker run -it --rm msdk-5.16.5-on-ubuntu-compact
+docker build -t msdk-5.16.10-on-ubuntu-compact -f Dockerfile-Ubuntu/Dockerfile .
+docker run -it --rm msdk-5.16.10-on-ubuntu-compact
 
 
 ## Pulseaudio

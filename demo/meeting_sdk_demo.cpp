@@ -46,11 +46,23 @@
 #include "ZoomSDKAudioRawData.h"
 #include "meeting_service_components/meeting_recording_interface.h"
 
+//references for SendVideoRawData
+#include "ZoomSDKVideoSource.h"
+
+//references for SendAudioRawData
+#include "ZoomSDKVirtualAudioMicEvent.h"
 
 #include <mutex>
 
 
 USING_ZOOM_SDK_NAMESPACE
+
+
+//references for SendAudioRawData
+std::string DEFAULT_AUDIO_SOURCE = "yourwavefile.wav";
+
+//references for SendVideoRawData
+std::string DEFAULT_VIDEO_SOURCE = "yourmp4file.mp4";
 
 
 GMainLoop* loop;
@@ -89,7 +101,8 @@ unsigned int userID;
 //do note that this will be overwritten by config.txt
 bool GetVideoRawData = false;
 bool GetAudioRawData = false;
-
+bool SendVideoRawData = false;
+bool SendAudioRawData = false;
 
 
 //this is a helper method to get the first User ID, it is just an arbitary UserID
@@ -163,6 +176,50 @@ void CheckAndStartRawRecording(bool isVideo, bool isAudio) {
 	}
 }
 
+//check if you meet the requirements to send raw data
+void CheckAndStartRawSending(bool isVideo, bool isAudio) {
+
+
+	//SendVideoRawData
+	if (isVideo) {
+
+		ZoomSDKVideoSource* virtual_camera_video_source = new ZoomSDKVideoSource(DEFAULT_VIDEO_SOURCE);
+		IZoomSDKVideoSourceHelper* p_videoSourceHelper = GetRawdataVideoSourceHelper();
+
+		if (p_videoSourceHelper) {
+			SDKError err = p_videoSourceHelper->setExternalVideoSource(virtual_camera_video_source);
+
+
+
+			if (err != SDKERR_SUCCESS) {
+				printf("attemptToStartRawVideoSending(): Failed to set external video source, error code: %d\n", err);
+			}
+			else {
+				printf("attemptToStartRawVideoSending(): Success \n");
+				IMeetingVideoController* meetingController = m_pMeetingService->GetMeetingVideoController();
+				meetingController->UnmuteVideo();
+
+			}
+		}
+		else {
+			printf("attemptToStartRawVideoSending(): Failed to get video source helper\n");
+		}
+	}
+
+
+	//SendAudioRawData
+	if (isAudio) {
+		ZoomSDKVirtualAudioMicEvent* audio_source = new ZoomSDKVirtualAudioMicEvent(DEFAULT_AUDIO_SOURCE);
+		IZoomSDKAudioRawDataHelper* audioHelper = GetAudioRawdataHelper();
+		if (audioHelper) {
+			SDKError err = audioHelper->setExternalAudioSource(audio_source);
+		}
+	}
+
+
+}
+
+
 
 //callback when given host permission
 void onIsHost() {
@@ -181,6 +238,33 @@ void onIsGivenRecordingPermission() {
 	CheckAndStartRawRecording(GetVideoRawData, GetAudioRawData);
 }
 
+void turnOnSendVideoAndAudio() {
+	//testing WIP
+	if (SendVideoRawData) {
+		IMeetingVideoController* meetingVidController = m_pMeetingService->GetMeetingVideoController();
+		meetingVidController->UnmuteVideo();
+	}
+	//testing WIP
+	if (SendAudioRawData) {
+		IMeetingAudioController* meetingAudController = m_pMeetingService->GetMeetingAudioController();
+		meetingAudController->JoinVoip();
+		printf("Is my audio muted: %d\n", getMyself()->IsAudioMuted());
+		meetingAudController->UnMuteAudio(getMyself()->GetUserID());
+	}
+}
+void turnOffSendVideoandAudio() {
+	//testing WIP
+	if (SendVideoRawData) {
+		IMeetingVideoController* meetingVidController = m_pMeetingService->GetMeetingVideoController();
+		meetingVidController->MuteVideo();
+	}
+	//testing WIP
+	if (SendAudioRawData) {
+		IMeetingAudioController* meetingAudController = m_pMeetingService->GetMeetingAudioController();
+		meetingAudController->MuteAudio(getMyself()->GetUserID(), true);
+
+	}
+}
 
 
 //callback when the SDK is inmeeting
@@ -199,6 +283,7 @@ void onInMeeting() {
 
 	//first attempt to start raw recording  / sending, upon successfully joined and achieved "in-meeting" state.
 	CheckAndStartRawRecording(GetVideoRawData, GetAudioRawData);
+	CheckAndStartRawSending(SendVideoRawData, SendAudioRawData);
 
 }
 
@@ -320,6 +405,29 @@ void ReadTEXTSettings()
 			GetAudioRawData=false;
 		}
 		std::cout << "GetAudioRawData: " << GetAudioRawData << std::endl;
+	}
+
+	if (config.find("SendVideoRawData") != config.end()) {
+		std::cout << "SendVideoRawData before parsing is : " << config["SendVideoRawData"] << std::endl;
+
+		if (config["SendVideoRawData"] == "true") {
+			SendVideoRawData = true;
+		}
+		else {
+			SendVideoRawData = false;
+		}
+		std::cout << "SendVideoRawData: " << SendVideoRawData << std::endl;
+	}
+	if (config.find("SendAudioRawData") != config.end()) {
+		std::cout << "SendAudioRawData before parsing is : " << config["SendAudioRawData"] << std::endl;
+
+		if (config["SendAudioRawData"] == "true") {
+			SendAudioRawData = true;
+		}
+		else {
+			SendAudioRawData = false;
+		}
+		std::cout << "SendAudioRawData: " << SendAudioRawData << std::endl;
 	}
 
 	// Additional processing or handling of parsed values can be done here
@@ -489,6 +597,29 @@ void JoinMeeting()
 		{
 			//ensure auto join audio
 			pAudioContext->EnableAutoJoinAudio(true);
+		}
+	}
+	if (SendVideoRawData) {
+
+		//ensure video is turned on
+		withoutloginParam.isVideoOff = false;
+		//set join video to true
+		ZOOM_SDK_NAMESPACE::IVideoSettingContext* pVideoContext = m_pSettingService->GetVideoSettings();
+		if (pVideoContext)
+		{
+			pVideoContext->EnableAutoTurnOffVideoWhenJoinMeeting(false);
+		}
+	}
+	if (SendAudioRawData) {
+
+		ZOOM_SDK_NAMESPACE::IAudioSettingContext* pAudioContext = m_pSettingService->GetAudioSettings();
+		if (pAudioContext)
+		{
+			//ensure auto join audio
+			pAudioContext->EnableAutoJoinAudio(true);
+			pAudioContext->EnableAlwaysMuteMicWhenJoinVoip(true);
+			pAudioContext->SetSuppressBackgroundNoiseLevel(Suppress_BGNoise_Level_None);
+
 		}
 	}
 

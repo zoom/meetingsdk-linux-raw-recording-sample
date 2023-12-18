@@ -47,6 +47,10 @@ add_executable(meetingSDKDemo
               ${CMAKE_SOURCE_DIR}/ZoomSDKRenderer.cpp
               ${CMAKE_SOURCE_DIR}/ZoomSDKAudioRawData.h
               ${CMAKE_SOURCE_DIR}/ZoomSDKAudioRawData.cpp
+              ${CMAKE_SOURCE_DIR}/ZoomSDKVideoSource.h
+              ${CMAKE_SOURCE_DIR}/ZoomSDKVideoSource.cpp
+              ${CMAKE_SOURCE_DIR}/ZoomSDKVirtualAudioMicEvent.h
+              ${CMAKE_SOURCE_DIR}/ZoomSDKVirtualAudioMicEvent.cpp
               )
 
 target_link_libraries(meetingSDKDemo gcc_s gcc)
