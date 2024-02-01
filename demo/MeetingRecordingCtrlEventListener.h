@@ -32,8 +32,9 @@ public:
 	/// \param handler A pointer to the IRequestLocalRecordingPrivilegeHandler. For more details, see \link IRequestLocalRecordingPrivilegeHandler \endlink.
 	virtual void onLocalRecordingPrivilegeRequested(IRequestLocalRecordingPrivilegeHandler* handler);
 
-
-
+	/// \brief Callback event that the cloud recording storage is full.
+	/// \param gracePeriodDate a point in time, in milliseconds, in UTC. You can use the cloud recording storage until the gracePeriodDate.
+	virtual void onCloudRecordingStorageFull(time_t gracePeriodDate) ;
 
 };
 

@@ -22,7 +22,7 @@ The is a sample app for Zoom Meeting SDK Linux. It demonstrates access to raw au
 
  -  `h` to `demo/include/h`
  - `qt_libs` to `demo/lib/zoom_meeting_sdk/qt_libs`
- - 4 of the `lib******.so` files to `demo/lib/zoom_meeting_sdk/lib******.so`
+ - all the `lib******.so` files to `demo/lib/zoom_meeting_sdk/lib******.so`
  - copy `translation.json` to `demo/lib/zoom_meeting_sdk/json`
  - softlink  `libmeetingsdk.so` to `libmeetingsdk.so.1` within `demo/lib/zoom_meeting_sdk/` . You can use the command `ln -s libmeetingsdk.so libmeetingsdk.so.1` to do so.
 
@@ -228,16 +228,16 @@ Currently this is tested on
 
 
 #### Centos 8
-docker build -t msdk-5.16.10-on-centos8-compact -f Dockerfile-Centos8/Dockerfile .
-docker run -it --rm msdk-5.16.10-on-centos8-compact
+docker build -t msdk-5.17.5-on-centos8-compact -f Dockerfile-Centos8/Dockerfile .
+docker run -it --rm msdk-5.17.5-on-centos8-compact
 
 #### Centos 9
-docker build -t msdk-5.16.10-on-centos9-compact -f Dockerfile-Centos9/Dockerfile .
-docker run -it --rm msdk-5.16.10-on-centos9-compact
+docker build -t msdk-5.17.5-on-centos9-compact -f Dockerfile-Centos9/Dockerfile .
+docker run -it --rm msdk-5.17.5-on-centos9-compact
 
 #### Ubuntu 22
-docker build -t msdk-5.16.10-on-ubuntu-compact -f Dockerfile-Ubuntu/Dockerfile .
-docker run -it --rm msdk-5.16.10-on-ubuntu-compact
+docker build -t msdk-5.17.5-on-ubuntu-compact -f Dockerfile-Ubuntu/Dockerfile .
+docker run -it --rm msdk-5.17.5-on-ubuntu-compact
 
 
 ## Pulseaudio

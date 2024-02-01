@@ -33,4 +33,8 @@ void MeetingRecordingCtrlEventListener::onLocalRecordingPrivilegeRequestStatus(R
 /// \param handler A pointer to the IRequestLocalRecordingPrivilegeHandler. For more details, see \link IRequestLocalRecordingPrivilegeHandler \endlink.
 void MeetingRecordingCtrlEventListener::onLocalRecordingPrivilegeRequested(IRequestLocalRecordingPrivilegeHandler* handler) {}
 
+void MeetingRecordingCtrlEventListener::onCloudRecordingStorageFull(time_t gracePeriodDate)
+{
+}
+
 

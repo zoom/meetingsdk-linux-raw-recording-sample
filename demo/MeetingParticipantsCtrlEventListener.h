@@ -84,5 +84,14 @@ public:
 	/// \brief Callback event that participant profile status change.
 	/// \param bHide true means hide participant profile picture, false means show participant profile picture. 
 	virtual void onParticipantProfilePictureStatusChange(bool bHidden);
+
+
+	/// \brief Callback event that focus mode changed by host or co-host.
+	/// \param bEnabled True means the focus mode change to on. Otherwise off.
+	virtual void onFocusModeStateChanged(bool bEnabled);
+
+	/// \brief Callback event that that focus mode share type changed by host or co-host.
+	/// \param type Share type change.
+	virtual void onFocusModeShareTypeChanged(FocusModeShareType type);
 };
 

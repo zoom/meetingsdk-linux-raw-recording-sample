@@ -80,3 +80,11 @@ void MeetingParticipantsCtrlEventListener::onInMeetingUserAvatarPathUpdated(unsi
 
 void MeetingParticipantsCtrlEventListener::onParticipantProfilePictureStatusChange(bool bHidden) {}
 
+void MeetingParticipantsCtrlEventListener::onFocusModeStateChanged(bool bEnabled)
+{
+}
+
+void MeetingParticipantsCtrlEventListener::onFocusModeShareTypeChanged(FocusModeShareType type)
+{
+}
+
