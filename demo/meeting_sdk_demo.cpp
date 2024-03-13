@@ -99,8 +99,8 @@ unsigned int userID;
 
 //this will enable or disable logic to get raw video and raw audio
 //do note that this will be overwritten by config.txt
-bool GetVideoRawData = false;
-bool GetAudioRawData = false;
+bool GetVideoRawData = true;
+bool GetAudioRawData = true;
 bool SendVideoRawData = false;
 bool SendAudioRawData = false;
 
