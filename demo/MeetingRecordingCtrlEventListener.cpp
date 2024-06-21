@@ -45,4 +45,12 @@ void MeetingRecordingCtrlEventListener::onCloudRecordingStorageFull(time_t grace
 {
 }
 
+void MeetingRecordingCtrlEventListener::onEnableAndStartSmartRecordingRequested(IRequestEnableAndStartSmartRecordingHandler* handler)
+{
+}
+
+void MeetingRecordingCtrlEventListener::onSmartRecordingEnableActionCallback(ISmartRecordingEnableActionHandler* handler)
+{
+}
+
 

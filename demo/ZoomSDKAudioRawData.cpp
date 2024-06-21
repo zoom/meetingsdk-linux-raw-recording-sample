@@ -37,3 +37,7 @@ void ZoomSDKAudioRawData::onMixedAudioRawDataReceived(AudioRawData* audioRawData
 void ZoomSDKAudioRawData::onShareAudioRawDataReceived(AudioRawData* data_)
 {
 }
+
+void ZoomSDKAudioRawData::onOneWayInterpreterAudioRawDataReceived(AudioRawData* data_, const zchar_t* pLanguageName)
+{
+}
