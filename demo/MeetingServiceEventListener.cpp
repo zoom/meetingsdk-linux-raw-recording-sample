@@ -40,7 +40,7 @@ void MeetingServiceEventListener::onMeetingStatusChanged(MeetingStatus status, i
 		printf("Meeting ends.\n");
 		if (onMeetingEnds_) onMeetingEnds_();
 		break;
-	case MEETING_STATUS_UNKNOW:
+	case MEETING_STATUS_UNKNOWN:
 		printf("Unknown status.\n");
 		break;
 	case MEETING_STATUS_LOCKED:
@@ -76,3 +76,7 @@ void MeetingServiceEventListener::onSuspendParticipantsActivities()
  void MeetingServiceEventListener::onAICompanionActiveChangeNotice(bool bActive) 
 {
 }
+
+ void MeetingServiceEventListener::onMeetingTopicChanged(const zchar_t* sTopic)
+ {
+ }

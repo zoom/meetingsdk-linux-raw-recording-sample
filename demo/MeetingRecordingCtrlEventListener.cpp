@@ -53,4 +53,8 @@ void MeetingRecordingCtrlEventListener::onSmartRecordingEnableActionCallback(ISm
 {
 }
 
+void MeetingRecordingCtrlEventListener::onTranscodingStatusChanged(TranscodingStatus status, const zchar_t* path)
+{
+}
+
 
