@@ -7,6 +7,11 @@ demo/lib/zoom_meeting_sdk/json/translations.json
 demo/include/h/*
 demo/.vscode/
 demo/out
+demo/CMakeCache.txt
+demo/CMakeFiles
+demo/Makefile
+demo/cmake_install.cmake
+demo/compile_commands.json
 demo/*.avi
 demo/*.mkv
 demo/config.txt
