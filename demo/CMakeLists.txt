@@ -11,32 +11,13 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 find_package(PkgConfig REQUIRED)
-find_package(ZLIB REQUIRED)
 
 # Find GLib using pkg-config
-pkg_check_modules(GLIB REQUIRED glib-2.0)
-pkg_check_modules(GIO REQUIRED gio-2.0)
+pkg_check_modules(GLIB REQUIRED IMPORTED_TARGET glib-2.0)
 
-include_directories(${CMAKE_SOURCE_DIR}/include)
 include_directories(${CMAKE_SOURCE_DIR}/include/h)
 
-
-# Include GLib directories
-include_directories(${GLIB_INCLUDE_DIRS} ${GIO_INCLUDE_DIRS})
-link_directories(${GLIB_LIBRARY_DIRS} ${GIO_LIBRARY_DIRS})
-add_definitions(${GLIB_CFLAGS_OTHER} ${GIO_CFLAGS_OTHER})
-
-
-include_directories(/usr/include/glib-2.0/)
-include_directories(/usr/include/glib-2.0/glib)
-include_directories(/usr/lib/x86_64-linux-gnu/glib-2.0/include/)
-include_directories(/usr/lib64/glib-2.0/include/)
-
-
 link_directories(${CMAKE_SOURCE_DIR}/lib/zoom_meeting_sdk)
-link_directories(${CMAKE_SOURCE_DIR}/lib/zoom_meeting_sdk/qt_libs)
-link_directories(${CMAKE_SOURCE_DIR}/lib/zoom_meeting_sdk/qt_libs/Qt/lib)
-
 
 add_executable(meetingSDKDemo 
               ${CMAKE_SOURCE_DIR}/meeting_sdk_demo.cpp
@@ -63,19 +44,11 @@ add_executable(meetingSDKDemo
               )
 
 # Link GLib libraries
-target_link_libraries(meetingSDKDemo ${GLIB_LIBRARIES} ${GIO_LIBRARIES})
-
-target_link_libraries(meetingSDKDemo gcc_s gcc)
+target_link_libraries(meetingSDKDemo PkgConfig::GLIB)
 target_link_libraries(meetingSDKDemo meetingsdk)
-target_link_libraries(meetingSDKDemo glib-2.0)
-target_link_libraries(meetingSDKDemo curl)
-target_link_libraries(meetingSDKDemo pthread)
-
 
 # Create a symbolic link
-execute_process(COMMAND ln -s libmeetingsdk.so libmeetingsdk.so.1
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/zoom_meeting_sdk
-)
+file(CREATE_LINK "${CMAKE_SOURCE_DIR}/lib/zoom_meeting_sdk/libmeetingsdk.so" "${CMAKE_SOURCE_DIR}/lib/zoom_meeting_sdk/libmeetingsdk.so.1" SYMBOLIC)
 
 configure_file(${CMAKE_SOURCE_DIR}/config.txt ${CMAKE_SOURCE_DIR}/bin/config.txt COPYONLY)
 
