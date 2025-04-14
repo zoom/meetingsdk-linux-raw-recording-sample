@@ -80,3 +80,7 @@ void MeetingServiceEventListener::onSuspendParticipantsActivities()
  void MeetingServiceEventListener::onMeetingTopicChanged(const zchar_t* sTopic)
  {
  }
+
+ void MeetingServiceEventListener::onMeetingFullToWatchLiveStream(const zchar_t* sLiveStreamUrl)
+ {
+ }
