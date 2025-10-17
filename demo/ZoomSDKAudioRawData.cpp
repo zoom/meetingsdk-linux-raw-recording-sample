@@ -34,7 +34,8 @@ void ZoomSDKAudioRawData::onMixedAudioRawDataReceived(AudioRawData* audioRawData
 		pcmFile.close();
 		pcmFile.flush();
 }
-void ZoomSDKAudioRawData::onShareAudioRawDataReceived(AudioRawData* data_)
+	
+void ZoomSDKAudioRawData::onShareAudioRawDataReceived(AudioRawData* data_, uint32_t user_id)
 {
 }
 

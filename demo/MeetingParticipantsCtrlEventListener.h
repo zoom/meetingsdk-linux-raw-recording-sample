@@ -110,5 +110,10 @@ public:
 	/// \brief Notification of virtual name tag roster info updated.
 	/// \param userID The ID of user who virtual name tag status changed.
 	virtual void onVirtualNameTagRosterInfoUpdated(unsigned int userID);
+		/**
+	 * @brief Callback event when the user's grant co-owner permission changed.
+	 * @param canGrantOther true means can grant others,otherwise not.
+	 */
+	 virtual void onGrantCoOwnerPrivilegeChanged(bool canGrantOther) ;
 };
 

@@ -69,7 +69,7 @@ GMainLoop* loop;
 
 
 //These are needed to readsettingsfromTEXT named config.txt
-std::string meeting_number, token, meeting_password, recording_token;
+std::string meeting_number, token, meeting_password, recording_token,onBehalfOf_Token;
 
 
 //Services which are needed to initialize, authenticate and configure settings for the SDK
@@ -384,6 +384,13 @@ void ReadTEXTSettings()
 		 recording_token=config["recording_token"];
 		 	std::cout << "recording_token: " << recording_token << std::endl;
 	}
+	if (config.find("onBehalfOf_Token") != config.end()) {
+	
+		 onBehalfOf_Token=config["onBehalfOf_Token"];
+		 	std::cout << "onBehalfOf_Token: " << onBehalfOf_Token << std::endl;
+	}
+
+
 	if (config.find("GetVideoRawData") != config.end()) {
 		std::cout << "GetVideoRawData before parsing is : " << config["GetVideoRawData"]   << std::endl;
 		
@@ -589,6 +596,22 @@ void JoinMeeting()
 		withoutloginParam.app_privilege_token = NULL;
 		std::cerr << "Leaving recording token as NULL" << std::endl;
 	}
+	
+	std::cerr << "onBehalfOf Token is " << onBehalfOf_Token << std::endl;
+	//automatically set onBehalfOf token if it is present in config.txt, or retrieved from web service
+	withoutloginParam.onBehalfToken = NULL;
+	if (!onBehalfOf_Token.size() == 0)
+	{
+		withoutloginParam.onBehalfToken = onBehalfOf_Token.c_str();
+		std::cerr << "Setting onBehalfOf token" << std::endl;
+	}
+	else
+	{
+		withoutloginParam.onBehalfToken = NULL;
+		std::cerr << "Leaving onBehalfOf token as NULL" << std::endl;
+	}
+
+
 
 	if (GetAudioRawData) {
 		//set join audio to true

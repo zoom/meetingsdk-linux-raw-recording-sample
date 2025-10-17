@@ -228,20 +228,20 @@ Currently this is tested on
 
 
 #### Centos 8
-docker build -t msdk-6.0.2-on-centos8-compact -f Dockerfile-Centos8/Dockerfile .
-docker run -it --rm msdk-6.0.2-on-centos8-compact
+docker build -t msdk-6.6.0-on-centos8-compact -f Dockerfile-Centos8/Dockerfile .
+docker run -it --rm msdk-6.6.0-on-centos8-compact
 
 #### Centos 9
-docker build -t msdk-6.0.2-on-centos9-compact -f Dockerfile-Centos9/Dockerfile .
-docker run -it --rm msdk-6.0.2-on-centos9-compact
+docker build -t msdk-6.6.0-on-centos9-compact -f Dockerfile-Centos9/Dockerfile .
+docker run -it --rm msdk-6.6.0-on-centos9-compact
 
 #### Ubuntu 22
-docker build -t msdk-6.0.2-on-ubuntu-compact -f Dockerfile-Ubuntu/Dockerfile .
-docker run -it --rm msdk-6.0.2-on-ubuntu-compact
+docker build -t msdk-6.6.0-on-ubuntu-compact -f Dockerfile-Ubuntu/Dockerfile .
+docker run -it --rm msdk-6.6.0-on-ubuntu-compact
 
 #### ol8
-docker build -t msdk-6.0.2-on-oraclelinux8-compact -f Dockerfile-ol8/Dockerfile .
-docker run -it --rm msdk-6.0.2-on-oraclelinux8-compact
+docker build -t msdk-6.6.0-on-oraclelinux8-compact -f Dockerfile-ol8/Dockerfile .
+docker run -it --rm msdk-6.6.0-on-oraclelinux8-compact
 
 
 ## Pulseaudio

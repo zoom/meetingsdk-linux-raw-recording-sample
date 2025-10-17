@@ -102,3 +102,6 @@ void MeetingParticipantsCtrlEventListener::onVirtualNameTagRosterInfoUpdated(uns
 {
 }
 
+void MeetingParticipantsCtrlEventListener::onGrantCoOwnerPrivilegeChanged(bool canGrantOther)
+{
+}
