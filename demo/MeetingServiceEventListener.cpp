@@ -3,6 +3,8 @@
 #include <iostream>
 
 MeetingServiceEventListener::MeetingServiceEventListener(void (*onMeetingStarts)(), void (*onMeetingEnds)(), void (*onInMeeting)())
+
+
 {
 	onMeetingEnds_ = onMeetingEnds;
 	onMeetingStarts_ = onMeetingStarts;
@@ -31,6 +33,7 @@ void MeetingServiceEventListener::onMeetingStatusChanged(MeetingStatus status, i
 		printf("Disconnect the meeting server, leave meeting status.\n");
 		break;
 	case MEETING_STATUS_RECONNECTING:
+
 		printf("Reconnecting meeting server status\n");
 		break;
 	case MEETING_STATUS_FAILED:
@@ -82,5 +85,9 @@ void MeetingServiceEventListener::onSuspendParticipantsActivities()
  }
 
  void MeetingServiceEventListener::onMeetingFullToWatchLiveStream(const zchar_t* sLiveStreamUrl)
+ {
+ }
+
+ void MeetingServiceEventListener::onUserNetworkStatusChanged(MeetingComponentType type, ConnectionQuality level, unsigned int userId, bool uplink)
  {
  }

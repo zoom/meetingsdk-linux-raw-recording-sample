@@ -704,6 +704,8 @@ void LeaveMeeting()
 			
 		}
 
+
+
 }
 
 //callback when authentication is compeleted
@@ -870,4 +872,3 @@ int main(int argc, char* argv[])
 	g_main_loop_run(loop);
 	return 0;
 }
-

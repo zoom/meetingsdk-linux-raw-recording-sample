@@ -42,5 +42,14 @@ public:
 /// The new join user can not join meeting, but they can watch the meeting live stream.
 /// \param sLiveStreamUrl The live stream URL to watch the meeting live stream.
 	virtual void onMeetingFullToWatchLiveStream(const zchar_t* sLiveStreamUrl);
+
+		/**
+	 * @brief Called when the user's share network quality changes.
+	 * @param type The data type whose network quality changed.
+	 * @param level The new network quality level for the specified data type.
+	 * @param userId The user whose network quality changed.
+	 * @param uplink This data is uplink or downlink.
+	 */
+	virtual void onUserNetworkStatusChanged(MeetingComponentType type, ConnectionQuality level, unsigned int userId, bool uplink);
 };
 
