@@ -228,20 +228,20 @@ Currently this is tested on
 
 
 #### Centos 8
-docker build -t msdk-6.6.0-on-centos8-compact -f Dockerfile-Centos8/Dockerfile .
-docker run -it --rm msdk-6.6.0-on-centos8-compact
+docker build -t msdk-6.6.10-on-centos8-compact -f Dockerfile-Centos8/Dockerfile .
+docker run -it --rm msdk-6.6.10-on-centos8-compact
 
 #### Centos 9
-docker build -t msdk-6.6.0-on-centos9-compact -f Dockerfile-Centos9/Dockerfile .
-docker run -it --rm msdk-6.6.0-on-centos9-compact
+docker build -t msdk-6.6.10-on-centos9-compact -f Dockerfile-Centos9/Dockerfile .
+docker run -it --rm msdk-6.6.10-on-centos9-compact
 
 #### Ubuntu 22
-docker build -t msdk-6.6.0-on-ubuntu-compact -f Dockerfile-Ubuntu/Dockerfile .
-docker run -it --rm msdk-6.6.0-on-ubuntu-compact
+docker build -t msdk-6.6.10-on-ubuntu-compact -f Dockerfile-Ubuntu/Dockerfile .
+docker run -it --rm msdk-6.6.10-on-ubuntu-compact
 
 #### ol8
-docker build -t msdk-6.6.0-on-oraclelinux8-compact -f Dockerfile-ol8/Dockerfile .
-docker run -it --rm msdk-6.6.0-on-oraclelinux8-compact
+docker build -t msdk-6.6.10-on-oraclelinux8-compact -f Dockerfile-ol8/Dockerfile .
+docker run -it --rm msdk-6.6.10-on-oraclelinux8-compact
 
 
 ## Pulseaudio
@@ -264,4 +264,3 @@ with [Premier Developer Support](https://zoom.us/docs/en-us/developer-support-pl
 
 ### Documentation
 Make sure to review [our documentation](https://marketplace.zoom.us/docs/zoom-apps/introduction/) as a reference when building your Zoom Apps.
-
